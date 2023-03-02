@@ -56,7 +56,7 @@ class _LandingScreenState extends State<WelcomeScreen>
   }
 
   startTime() async {
-    var duration = const Duration(seconds: 4);
+    var duration = const Duration(milliseconds: 1500);
     return Timer(duration, route);
   }
 

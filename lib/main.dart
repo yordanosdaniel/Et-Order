@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
         routes: {
           "/fallbackSuccess": (context) => const FallbackPage(),
         },
-        home: const AuthStateScreen(),
+        home: const WelcomeScreen(),
       
       ),
     );
