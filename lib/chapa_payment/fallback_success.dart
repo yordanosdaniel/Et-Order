@@ -79,7 +79,8 @@ class _FallbackPageState extends State<FallbackPage> {
                   onPressed: message == "paymentSuccessful"
                       ? () {
                           Navigator.pop(context);
-                          Navigator.pushReplacement(
+                          Navigator.pop(context);
+                          Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => Checkout(

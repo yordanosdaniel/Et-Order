@@ -100,7 +100,7 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
             padding: const EdgeInsets.all(10),
             margin: const EdgeInsets.only(top: 10, left: 10),
             child: Text(
-              "Hello $_name,\n\nThank you for purchasing on BJ Etherbal.",
+              "Hello $_name,\n\nThank you for purchasing on  Etherbal.",
               style:
                   const TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
             ),
@@ -152,7 +152,7 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
             ),
             onPressed: () {
               Navigator.pop(context);
-              Navigator.pushReplacement(
+              Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const MainPage(),

@@ -77,6 +77,8 @@ class _ChapaWebViewState extends State<ChapaWebView> {
   }
 
   void exitPaymentPage(String message) {
+                          // Navigator.pop(context);
+// 
     Navigator.of(context, rootNavigator: true).pushNamed(
       widget.fallBackNamedUrl,
       arguments: {

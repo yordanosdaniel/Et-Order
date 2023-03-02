@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:demo_project/screens/delivery_information/checkout.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,8 +18,13 @@ class IntermidatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final cartProvider = Provider.of<CartProvider>(context);
+
+
     User? user = FirebaseAuth.instance.currentUser;
     final currentUser = user!.uid;
+     Uuid uuid = Uuid();
 
     return Scaffold(
       appBar: AppBar(
@@ -74,16 +80,17 @@ class IntermidatePage extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: 30),
                   child: MaterialButton(
                     onPressed: () {
+                      var id = uuid.v4();
                       Chapa.paymentParameters(
                         context: context, // context
                         publicKey:
-                            'CHASECK_TEST-XcLb5JUwnXY4dBPzDJJyyFFiPMSvZ7CR',
+                            'CHASECK_TEST-31TfdtPdKjsH2jQn5LM2mkMa36dtYAxU',
                         currency: 'ETB',
                         amount: total.toString(),
                         email: addressDoc["customer information"]['email'],
                         firstName: fname,
                         lastName: lname,
-                        txRef: '34TXTHHgb',
+                        txRef: id,
                         title: 'title',
                         desc: 'desc',
                         namedRouteFallBack:
@@ -115,6 +122,32 @@ class IntermidatePage extends StatelessWidget {
                   ),
                 );
               }),
+              const SizedBox(height: 20,),
+              MaterialButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Checkout(
+                                        total: cartProvider.deliveryFee+cartProvider.subTotal,
+                                        deliveryFee: cartProvider.deliveryFee,
+                                        subtotal: cartProvider.subTotal,
+                                      )));
+                    },
+                    color: Colors.orange[500],
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 28.0, vertical: 16),
+                      child: Text(
+                        "Continue without Payment",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
         ],
       ),
     );
